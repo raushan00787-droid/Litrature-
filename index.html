@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>VERSÉA | Independent Literary House</title>
+
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --surface: rgba(255, 255, 255, 0.64);
+      --text: #191715;
+      --muted: #716a62;
+      --border: rgba(25, 23, 21, 0.12);
+
+      /* Change these later if the site's identity changes */
+      --accent: #36564e;
+      --accent-soft: #dfe8e3;
+      --warm: #9a6647;
+
+      --radius: 24px;
+      --shadow: 0 20px 55px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 10% 15%, rgba(154, 102, 71, 0.08), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(54, 86, 78, 0.10), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================== */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(244, 239, 231, 0.80);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1250px;
+      margin: auto;
+      padding: 17px 25px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 1.05rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.92rem;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      max-width: 1250px;
+      margin: auto;
+      min-height: 82vh;
+
+      padding: 75px 25px;
+
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .hero h1 {
+      font-size: clamp(4rem, 8vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: -0.055em;
+      margin: 18px 0;
+    }
+
+    .hero-text {
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 1.12rem;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 19px;
+      border-radius: 999px;
+
+      background: var(--text);
+      color: white;
+
+      border: 1px solid var(--text);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    /* =========================
+       FEATURED STORY
+    ========================== */
+
+    .featured {
+      min-height: 500px;
+
+      border-radius: 30px;
+      padding: 35px;
+
+      color: #f8f4ed;
+
+      background:
+        radial-gradient(circle at 80% 15%, rgba(255,255,255,0.10), transparent 20%),
+        linear-gradient(145deg, #223a35, #61483b);
+
+      box-shadow: var(--shadow);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured::before {
+      content: "";
+      position: absolute;
+
+      width: 250px;
+      height: 250px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.07);
+
+      top: -80px;
+      right: -50px;
+    }
+
+    .featured-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+
+      opacity: 0.75;
+      margin-bottom: 10px;
+    }
+
+    .featured h2 {
+      font-size: 3.4rem;
+      line-height: 1;
+
+      max-width: 450px;
+      margin-bottom: 15px;
+
+      position: relative;
+    }
+
+    .featured p {
+      opacity: 0.82;
+      margin-bottom: 23px;
+      position: relative;
+    }
+
+    .featured .btn {
+      background: #f8f4ed;
+      border-color: #f8f4ed;
+      color: #1c1a18;
+      width: fit-content;
+      position: relative;
+    }
+
+    /* =========================
+       GLOBAL SECTION
+    ========================== */
+
+    section {
+      max-width: 1250px;
+      margin: auto;
+      padding: 90px 25px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: clamp(2.3rem, 4vw, 3.8rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .section-description {
+      max-width: 530px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       FILTERS
+    ========================== */
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      margin-bottom: 28px;
+    }
+
+    .filter {
+      border: 1px solid var(--border);
+
+      background: rgba(255,255,255,0.42);
+
+      border-radius: 999px;
+
+      padding: 9px 15px;
+
+      cursor: pointer;
+
+      color: var(--text);
+
+      transition: 0.2s ease;
+    }
+
+    .filter:hover {
+      transform: translateY(-1px);
+    }
+
+    .filter.active {
+      background: var(--text);
+      color: white;
+    }
+
+    /* =========================
+       STORIES GRID
+    ========================== */
+
+    .story-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .story-card {
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      overflow: hidden;
+
+      background: var(--surface);
+
+      transition: 0.25s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .story-cover {
+      height: 210px;
+
+      padding: 20px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      color: white;
+
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* Genre-specific worlds */
+
+    .genre-drama {
+      background:
+        linear-gradient(145deg, #2d4942, #755340);
+    }
+
+    .genre-romance {
+      background:
+        linear-gradient(145deg, #906069, #d09d91);
+    }
+
+    .genre-thriller {
+      background:
+        linear-gradient(145deg, #17191c, #623e42);
+    }
+
+    .genre-fantasy {
+      background:
+        linear-gradient(145deg, #40385f, #9a7950);
+    }
+
+    .genre-philosophy {
+      background:
+        linear-gradient(145deg, #39454d, #817c73);
+    }
+
+    .story-content {
+      padding: 23px;
+    }
+
+    .story-meta {
+      font-size: 0.73rem;
+
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+
+      color: var(--accent);
+
+      font-weight: bold;
+
+      margin-bottom: 8px;
+    }
+
+    .story-content h3 {
+      font-size: 1.65rem;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .story-content p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .story-link {
+      font-weight: bold;
+    }
+
+    /* =========================
+       OTHER WORKS
+    ========================== */
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      gap: 22px;
+    }
+
+    .work-box {
+      border: 1px solid var(--border);
+
+      border-radius: 28px;
+
+      padding: 32px;
+
+      background: rgba(255,255,255,0.50);
+    }
+
+    .work-box h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .work-box p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       AUTHORS
+    ========================== */
+
+    .authors-box {
+      border: 1px solid var(--border);
+
+      border-radius: 28px;
+
+      background: rgba(255,255,255,0.50);
+
+      overflow: hidden;
+    }
+
+    .author {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 20px;
+
+      padding: 22px 25px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .author:last-child {
+      border-bottom: none;
+    }
+
+    .author-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .author-role {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       ABOUT
+    ========================== */
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 22px;
+    }
+
+    .about-box {
+      border-radius: 28px;
+
+      border: 1px solid var(--border);
+
+      padding: 31px;
+
+      background: rgba(255,255,255,0.50);
+    }
+
+    .about-box h3 {
+      font-size: 1.8rem;
+
+      margin-bottom: 10px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      max-width: 1250px;
+
+      margin: auto;
+
+      padding: 30px 25px 55px;
+
+      color: var(--muted);
+
+      border-top: 1px solid var(--border);
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      flex-wrap: wrap;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 900px) {
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .work-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .featured {
+        min-height: 390px;
+      }
+
+      .featured h2 {
+        font-size: 2.7rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <nav class="navbar">
+    <div class="nav-inner">
+
+      <a href="#" class="logo">
+        Verséa
+      </a>
+
+      <div class="nav-links">
+        <a href="#stories">Stories</a>
+        <a href="#works">Other Works</a>
+        <a href="#authors">Authors</a>
+        <a href="#about">About</a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <header class="hero">
+
+    <div>
+
+      <div class="eyebrow">
+        Independent Literary House
+      </div>
+
+      <h1>
+        Stories with their own worlds.
+      </h1>
+
+      <p class="hero-text">
+        A shared home for long-form stories, poems, essays, experiments,
+        and works that deserve a place beyond the ordinary feed.
+      </p>
+
+      <div class="hero-actions">
+
+        <a class="btn" href="#stories">
+          Explore Stories
+        </a>
+
+        <a class="btn secondary" href="#authors">
+          Meet the Authors
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- Featured Story -->
+
+    <article class="featured">
+
+      <div class="featured-label">
+        Featured · Drama
+      </div>
+
+      <h2>
+        The Closest Stranger
+      </h2>
+
+      <p>
+        A long-form story by Anushka.
+      </p>
+
+      <a href="#closest-stranger" class="btn">
+        Begin Reading →
+      </a>
+
+    </article>
+
+  </header>
+
+
+  <!-- =========================
+       STORIES
+  ========================== -->
+
+  <section id="stories">
+
+    <div class="section-head">
+
+      <div>
+        <div class="eyebrow">
+          The Library
+        </div>
+
+        <h2 class="section-title">
+          Stories
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Every genre can have its own visual personality.
+        The website connects them without forcing them into one aesthetic.
+      </p>
+
+    </div>
+
+
+    <!-- Genre Filters -->
+
+    <div class="filters">
+
+      <button class="filter active" data-filter="all">
+        All
+      </button>
+
+      <button class="filter" data-filter="drama">
+        Drama
+      </button>
+
+      <button class="filter" data-filter="romance">
+        Romance
+      </button>
+
+      <button class="filter" data-filter="thriller">
+        Thriller
+      </button>
+
+      <button class="filter" data-filter="fantasy">
+        Fantasy
+      </button>
+
+      <button class="filter" data-filter="philosophy">
+        Philosophy
+      </button>
+
+    </div>
+
+
+    <!-- Story Cards -->
+
+    <div class="story-grid">
+
+
+      <!-- The Closest Stranger -->
+
+      <article
+        class="story-card"
+        id="closest-stranger"
+        data-genre="drama"
+      >
+
+        <div class="story-cover genre-drama">
+          <span>01</span>
+          <span>Drama</span>
+        </div>
+
+        <div class="story-content">
+
+          <div class="story-meta">
+            Anushka · Long-form
+          </div>
+
+          <h3>
+            The Closest Stranger
+          </h3>
+
+          <p>
+            A chapter-based story with its own dedicated reading experience.
+          </p>
+
+          <!-- Change this later -->
+          <a href="#" class="story-link">
+            Read Chapter One →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- Romance Example -->
+
+      <article
+        class="story-card"
+        data-genre="romance"
+      >
+
+        <div class="story-cover genre-romance">
+          <span>02</span>
+          <span>Romance</span>
+        </div>
+
+        <div class="story-content">
+
+          <div class="story-meta">
+            Example Story
+          </div>
+
+          <h3>
+            After the Rain
+          </h3>
+
+          <p>
+            Example card showing how a romance can get a warmer visual identity.
+          </p>
+
+          <a href="#" class="story-link">
+            Open Story →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- Thriller Example -->
+
+      <article
+        class="story-card"
+        data-genre="thriller"
+      >
+
+        <div class="story-cover genre-thriller">
+          <span>03</span>
+          <span>Thriller</span>
+        </div>
+
+        <div class="story-content">
+
+          <div class="story-meta">
+            Example Story
+          </div>
+
+          <h3>
+            Room 7B
+          </h3>
+
+          <p>
+            A darker visual atmosphere for suspense-oriented fiction.
+          </p>
+
+          <a href="#" class="story-link">
+            Open Story →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- Fantasy Example -->
+
+      <article
+        class="story-card"
+        data-genre="fantasy"
+      >
+
+        <div class="story-cover genre-fantasy">
+          <span>04</span>
+          <span>Fantasy</span>
+        </div>
+
+        <div class="story-content">
+
+          <div class="story-meta">
+            Example Story
+          </div>
+
+          <h3>
+            The Glass Kingdom
+          </h3>
+
+          <p>
+            A possible fantasy layout with room for lore and illustrations.
+          </p>
+
+          <a href="#" class="story-link">
+            Open Story →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- Philosophy Example -->
+
+      <article
+        class="story-card"
+        data-genre="philosophy"
+      >
+
+        <div class="story-cover genre-philosophy">
+          <span>05</span>
+          <span>Philosophy</span>
+        </div>
+
+        <div class="story-content">
+
+          <div class="story-meta">
+            Raushan · Essay
+          </div>
+
+          <h3>
+            The Weight of Becoming
+          </h3>
+
+          <p>
+            A sample editorial piece showing a more reflective category.
+          </p>
+
+          <a href="#" class="story-link">
+            Read Work →
+          </a>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       OTHER WORKS
+  ========================== -->
+
+  <section id="works">
+
+    <div class="section-head">
+
+      <div>
+        <div class="eyebrow">
+          Beyond Stories
+        </div>
+
+        <h2 class="section-title">
+          Other Works
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Poems, essays, one-shots, fragments, experimental writing,
+        and anything else that does not need a chapter list.
+      </p>
+
+    </div>
+
+
+    <div class="work-grid">
+
+
+      <!-- Raushan -->
+
+      <div class="work-box">
+
+        <h3>
+          Raushan's Writing
+        </h3>
+
+        <p>
+          Selected works published through different platforms.
+          The new site can act as their central catalogue.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            href="https://the-quiet-scribe.pages.dev/"
+            target="_blank"
+            rel="noopener"
+            class="btn"
+          >
+            The Quiet Scribe ↗
+          </a>
+
+          <!-- Replace with actual Wattpad profile -->
+          <a
+            href="#"
+            class="btn secondary"
+          >
+            Wattpad ↗
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- Reading Experience -->
+
+      <div class="work-box">
+
+        <h3>
+          A Flexible Library
+        </h3>
+
+        <p>
+          Different stories do not need identical pages.
+          A mystery can feel tense, fantasy can feel immersive,
+          and poetry can stay almost entirely typographic.
+        </p>
+
+        <div class="hero-actions">
+
+          <a href="#stories" class="btn">
+            Browse the Library
+          </a>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       AUTHORS
+  ========================== -->
+
+  <section id="authors">
+
+    <div class="section-head">
+
+      <div>
+        <div class="eyebrow">
+          The Writers
+        </div>
+
+        <h2 class="section-title">
+          Authors
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Shared website, separate voices.
+        Each author can have a dedicated profile and works list.
+      </p>
+
+    </div>
+
+
+    <div class="authors-box">
+
+
+      <div class="author">
+
+        <div>
+          <div class="author-name">
+            Anushka
+          </div>
+
+          <div class="author-role">
+            Fiction · Long-form Stories
+          </div>
+        </div>
+
+        <a href="#" class="story-link">
+          View Works →
+        </a>
+
+      </div>
+
+
+      <div class="author">
+
+        <div>
+          <div class="author-name">
+            Raushan
+          </div>
+
+          <div class="author-role">
+            Fiction · Poetry · Essays
+          </div>
+        </div>
+
+        <a href="#" class="story-link">
+          View Works →
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ABOUT
+  ========================== -->
+
+  <section id="about">
+
+    <div class="section-head">
+
+      <div>
+        <div class="eyebrow">
+          About
+        </div>
+
+        <h2 class="section-title">
+          A home for written worlds.
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Not everything has to look the same.
+        The identity lives in the house, while every work gets to build its own room.
+      </p>
+
+    </div>
+
+
+    <div class="about-grid">
+
+
+      <div class="about-box">
+
+        <h3>
+          The Quiet Scribe
+        </h3>
+
+        <p>
+          A connected sister-site for quieter personal writing,
+          reflection, philosophy, and Raushan's own literary space.
+        </p>
+
+              <br />
+
+        <a
+          href="https://the-quiet-scribe.pages.dev/"
+          target="_blank"
+          rel="noopener"
+          class="btn"
+        >
+          Visit The Quiet Scribe ↗
+        </a>
+
+      </div>
+
+
+      <div class="about-box">
+
+        <h3>
+          Wattpad
+        </h3>
+
+        <p>
+          External publishing can remain external.
+          This website can catalogue and direct readers to works hosted elsewhere.
+        </p>
+
+        <br />
+
+        <!-- Replace # with your actual Wattpad link -->
+        <a
+          href="#"
+          class="btn secondary"
+        >
+          Visit Wattpad ↗
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div>
+      © 2026 Verséa
+    </div>
+
+    <div>
+      <a
+        href="https://the-quiet-scribe.pages.dev/"
+        target="_blank"
+        rel="noopener"
+      >
+        The Quiet Scribe ↗
+      </a>
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    const filters = document.querySelectorAll(".filter");
+    const stories = document.querySelectorAll(".story-card");
+
+    filters.forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        // Update active button
+
+        filters.forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+
+        // Get selected genre
+
+        const selectedGenre = button.dataset.filter;
+
+
+        // Filter stories
+
+        stories.forEach((story) => {
+
+          if (
+            selectedGenre === "all" ||
+            story.dataset.genre === selectedGenre
+          ) {
+
+            story.style.display = "";
+
+          } else {
+
+            story.style.display = "none";
+
+          }
+
+        });
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
