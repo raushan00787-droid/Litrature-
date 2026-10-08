@@ -69,6 +69,25 @@
       color:var(--ink)!important;
     }
 
+    .house-map{
+      border-bottom:1px solid var(--line);
+      background:rgba(238,230,216,.42);
+    }
+    .house-map-inner{
+      min-height:36px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      overflow-x:auto;
+      white-space:nowrap;
+      color:var(--muted);
+      font:600 .61rem/1 var(--sans);
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+    .house-map-inner span:first-child{color:var(--green)}
+    .house-map-inner i{font-style:normal;opacity:.45}
+
     .hero{
       padding:76px 0 70px;
     }
@@ -229,6 +248,7 @@
       .links{gap:10px}
       .links a:nth-child(3),.links a:nth-child(4){display:none}
       .nav-cta{padding:9px 12px}
+      .house-map-inner{min-height:32px}
       h1{font-size:4rem}
       .hero-card{min-height:320px}
       .mini-note-inner{display:block}
@@ -251,10 +271,16 @@
         <a href="rooms.html">Rooms</a>
         <a href="authors.html">Authors</a>
         <a href="about.html">About</a>
-        <a class="nav-cta" href="library.html">Enter Library</a>
+        <a class="nav-cta" href="library.html">Enter Aurelis</a>
       </nav>
     </div>
   </header>
+
+  <div class="house-map">
+    <div class="wrap house-map-inner">
+      <span>Aurelis</span><i>→</i><span>Library</span><i>→</i><span>Rooms</span><i>→</i><span>Works</span>
+    </div>
+  </div>
 
   <main id="home">
     <section class="hero">
@@ -267,8 +293,8 @@
             No single style. Just good pages worth opening.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="library.html">Enter the Library ↗</a>
-            <a class="button secondary" href="rooms.html">Explore the Rooms</a>
+            <a class="button primary" href="library.html">Enter Aurelis ↗</a>
+            <a class="button secondary" href="rooms.html">Then: Rooms →</a>
           </div>
         </div>
 
