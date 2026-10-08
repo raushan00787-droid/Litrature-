@@ -115,7 +115,11 @@
     .btn.secondary {
       background: transparent;
       color: var(--text);
-      border-color: var(--border);
+      border: 0;
+      border-bottom: 1px solid var(--text);
+      border-radius: 0;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .text-link {
@@ -202,59 +206,62 @@
 
     /* HERO */
     .hero {
-      padding: 78px 0 75px;
+      padding: 55px 0 105px;
+      border-bottom: 1px solid var(--border);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 42px;
-      align-items: stretch;
+      grid-template-columns: 1fr 0.62fr;
+      gap: 70px;
+      align-items: end;
     }
 
     .hero-copy {
-      min-height: 570px;
+      min-height: 510px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
     .hero h1 {
-      max-width: 820px;
-      margin: 18px 0 24px;
-      font-size: clamp(4rem, 8vw, 8rem);
-      line-height: 0.89;
-      letter-spacing: -0.06em;
+      max-width: 980px;
+      margin: 20px 0 25px;
+      font-size: clamp(4.8rem, 10vw, 10.5rem);
+      line-height: 0.82;
+      letter-spacing: -0.075em;
+      font-weight: 500;
     }
 
     .hero-text {
-      max-width: 675px;
-      margin-bottom: 28px;
+      max-width: 570px;
+      margin-bottom: 30px;
       color: var(--muted);
-      font-size: 1.12rem;
+      font-size: 1.04rem;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 24px;
+      align-items: center;
     }
 
     .featured {
       position: relative;
       overflow: hidden;
-      min-height: 570px;
+      min-height: 510px;
       padding: 34px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      border-radius: 32px;
+      border-radius: 4px;
       color: #f8f3eb;
       background:
         radial-gradient(circle at 82% 15%, rgba(255,255,255,0.13), transparent 20%),
         radial-gradient(circle at 15% 76%, rgba(255,255,255,0.07), transparent 22%),
         linear-gradient(145deg, #223a35, #624a3c);
-      box-shadow: var(--shadow);
+      box-shadow: none;
     }
 
     .featured::before {
@@ -307,9 +314,13 @@
 
     .featured .btn {
       width: fit-content;
-      background: #f8f3eb;
-      border-color: #f8f3eb;
-      color: #1d1b19;
+      padding: 0 0 4px;
+      min-height: auto;
+      border: 0;
+      border-bottom: 1px solid rgba(248,243,235,0.65);
+      border-radius: 0;
+      background: transparent;
+      color: #f8f3eb;
     }
 
     /* STORIES */
@@ -329,10 +340,11 @@
     }
 
     .filter {
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 9px 15px;
-      background: rgba(255,255,255,0.42);
+      border: 0;
+      border-bottom: 1px solid transparent;
+      border-radius: 0;
+      padding: 7px 2px;
+      background: transparent;
       color: var(--text);
       cursor: pointer;
       transition: 0.2s ease;
@@ -343,32 +355,32 @@
     }
 
     .filter.active {
-      background: var(--text);
+      background: transparent;
       border-color: var(--text);
-      color: #fff;
+      color: var(--text);
     }
 
     .story-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 0;
+      border-top: 1px solid var(--border);
     }
 
     .story-card {
       overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--surface);
-      transition: transform 0.24s ease, box-shadow 0.24s ease;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      background: transparent;
+      transition: background 0.2s ease;
     }
 
     .story-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow);
+      background: rgba(255,255,255,0.38);
     }
 
     .story-cover {
-      min-height: 210px;
+      min-height: 285px;
       padding: 20px;
       display: flex;
       justify-content: space-between;
@@ -400,7 +412,7 @@
     }
 
     .story-content {
-      padding: 23px;
+      padding: 27px 30px 32px;
     }
 
     .story-meta {
@@ -426,6 +438,17 @@
     .story-action {
       min-height: 42px;
       padding: 10px 15px;
+    }
+
+    .story-card.future {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 0.35fr 1fr;
+      border-right: 0;
+    }
+
+    .story-card.future .story-cover {
+      min-height: 150px;
     }
 
     .story-card.future .story-action {
@@ -797,29 +820,26 @@
     <header class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Independent Literary House</div>
-
-          <h1>Stories with their own worlds.</h1>
-
+          <div class="eyebrow">Verséa · Issue 01</div>
+          <h1>Written worlds,<br>kept alive.</h1>
           <p class="hero-text">
-            A shared home for long-form stories, poems, essays, experiments,
-            and works that deserve a place beyond the ordinary feed.
+            A literary house for work that needs more than a scroll.
+            Stories, essays, poems, and unfinished ideas, each allowed to
+            arrive in its own form.
           </p>
-
           <div class="hero-actions">
-            <a class="btn" href="#stories">Enter the Library ↓</a>
-            <a class="btn secondary" href="#rooms">Explore the Rooms ↓</a>
+            <a class="btn secondary" href="#stories">Read the catalogue ↓</a>
+            <span class="small-label">Vol. I · 2026</span>
           </div>
         </div>
 
         <article class="featured">
-          <div class="featured-label">Featured · Drama</div>
+          <div class="featured-label">Currently at Verséa · 01</div>
           <h2>The Closest Stranger</h2>
           <p>
-            A long-form story by Anushka, currently the featured work of the house.
+            Anushka's long-form fiction. The first work to occupy the house.
           </p>
-
-          <a class="btn" href="#closest-stranger">View the Story ↓</a>
+          <a class="btn" href="#closest-stranger">Enter the work ↗</a>
         </article>
       </div>
     </header>
@@ -830,12 +850,11 @@
         <div class="section-head">
           <div>
             <div class="eyebrow">The Library</div>
-            <h2 class="section-title">Stories, each with its own atmosphere.</h2>
+            <h2 class="section-title">The catalogue.</h2>
           </div>
 
           <p class="section-description">
-            Stories, essays, poetry, and other written works, gathered under one literary house.
-            Each work keeps its own voice and atmosphere.
+            A small shelf, growing slowly. No feed, no noise. Just the work and the space around it.
           </p>
         </div>
 
