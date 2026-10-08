@@ -3,679 +3,425 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aurelis is an independent literary house where written worlds converge." />
-  <title>Aurelis | Independent Literary House</title>
-
+  <meta name="description" content="Aurelis is an independent literary house for stories, poems, essays, and written worlds." />
+  <title>Aurelis | Literary House</title>
   <style>
     :root{
-      --paper:#f1ece2;
-      --paper-2:#e8e0d2;
-      --ink:#1b1a17;
-      --soft:#706b62;
-      --line:rgba(27,26,23,.14);
-      --forest:#27413b;
-      --wine:#6d4d49;
-      --cream:#f7f2e9;
-      --max:1280px;
-      --serif: Georgia, "Times New Roman", serif;
-      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --paper:#f6f1e8;
+      --paper-2:#eee6d8;
+      --ink:#18201d;
+      --muted:#6f746e;
+      --line:rgba(24,32,29,.12);
+      --green:#23453b;
+      --rose:#8a625e;
+      --white:#fffaf2;
+      --max:1120px;
+      --serif:Georgia,"Times New Roman",serif;
+      --sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
     }
-
     *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    html{scroll-behavior:smooth;scroll-padding-top:84px}
     body{
       color:var(--ink);
       background:
-        radial-gradient(circle at 12% 8%, rgba(109,77,73,.07), transparent 25%),
-        radial-gradient(circle at 88% 18%, rgba(39,65,59,.08), transparent 27%),
-        linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px),
+        radial-gradient(circle at 10% 0%,rgba(138,98,94,.09),transparent 25%),
+        radial-gradient(circle at 100% 15%,rgba(35,69,59,.09),transparent 28%),
         var(--paper);
-      background-size:auto,auto,100% 6px,auto;
       font-family:var(--serif);
       line-height:1.6;
     }
     a{color:inherit;text-decoration:none}
-    button{font:inherit}
-    .container{width:min(var(--max),calc(100% - 52px));margin:0 auto}
-    .eyebrow,.meta,.kicker{
-      font-family:var(--sans);
+    .wrap{width:min(var(--max),calc(100% - 36px));margin:auto}
+    .sans{font-family:var(--sans)}
+    .label{
+      font:700 .68rem/1.2 var(--sans);
       text-transform:uppercase;
-      letter-spacing:.17em;
-      font-size:.68rem;
-      font-weight:700;
+      letter-spacing:.14em;
+      color:var(--green);
     }
-    .eyebrow{color:var(--forest)}
-    .muted{color:var(--soft)}
 
-    /* HEADER */
-    .masthead{
+    header{
+      position:sticky;top:0;z-index:20;
+      background:rgba(246,241,232,.9);
+      backdrop-filter:blur(12px);
       border-bottom:1px solid var(--line);
-      background:rgba(241,236,226,.78);
-      backdrop-filter:blur(14px);
-      position:sticky;
-      top:0;
-      z-index:50;
-    }
-    .masthead-inner{
-      min-height:78px;
-      display:grid;
-      grid-template-columns:1fr auto 1fr;
-      align-items:center;
-      gap:24px;
-    }
-    .brand{
-      font-family:var(--serif);
-      font-size:1.2rem;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      font-weight:700;
-    }
-    .brand-note{
-      font-family:var(--sans);
-      color:var(--soft);
-      font-size:.66rem;
-      letter-spacing:.1em;
-      text-transform:uppercase;
     }
     .nav{
+      min-height:74px;
       display:flex;
-      justify-content:flex-end;
-      gap:24px;
-      font-family:var(--sans);
-      font-size:.78rem;
-      letter-spacing:.05em;
-    }
-    .nav a{position:relative;padding:7px 0;color:var(--soft)}
-    .nav a:hover{color:var(--ink)}
-    .nav a::after{
-      content:"";
-      position:absolute;
-      left:0;right:0;bottom:2px;height:1px;
-      background:currentColor;
-      transform:scaleX(0);
-      transition:.2s ease;
-    }
-    .nav a:hover::after{transform:scaleX(1)}
-
-    /* HERO */
-    .hero{
-      padding:48px 0 0;
-      border-bottom:1px solid var(--line);
-    }
-    .issue-line{
-      display:flex;
+      align-items:center;
       justify-content:space-between;
-      gap:20px;
-      font-family:var(--sans);
-      color:var(--soft);
-      font-size:.69rem;
-      letter-spacing:.1em;
+      gap:24px;
+    }
+    .logo{
+      font-size:1.35rem;
+      font-weight:700;
+      letter-spacing:.12em;
       text-transform:uppercase;
-      padding-bottom:18px;
-      border-bottom:1px solid var(--line);
+    }
+    .links{display:flex;align-items:center;gap:22px;font:500 .78rem/1 var(--sans)}
+    .links a{color:var(--muted)}
+    .links a:hover{color:var(--ink)}
+    .nav-cta{
+      padding:10px 15px;
+      border:1px solid var(--ink);
+      border-radius:999px;
+      color:var(--ink)!important;
+    }
+
+    .hero{
+      padding:76px 0 70px;
     }
     .hero-grid{
       display:grid;
-      grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
-      min-height:720px;
-    }
-    .hero-copy{
-      padding:82px 60px 92px 0;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      border-right:1px solid var(--line);
-    }
-    .hero h1{
-      margin:18px 0 25px;
-      max-width:840px;
-      font-size:clamp(4.8rem,10vw,10rem);
-      line-height:.82;
-      letter-spacing:-.075em;
-      font-weight:500;
-    }
-    .hero-lead{
-      max-width:610px;
-      color:#57534c;
-      font-size:1.08rem;
-      line-height:1.75;
-    }
-    .hero-note{
-      margin-top:46px;
-      display:flex;
-      align-items:center;
-      gap:17px;
-      font-family:var(--sans);
-      font-size:.75rem;
-      color:var(--soft);
-    }
-    .hairline{width:56px;height:1px;background:var(--ink)}
-    .hero-feature{
-      position:relative;
-      padding:54px 0 54px 54px;
-      display:flex;
-      align-items:flex-end;
-    }
-    .feature-paper{
-      width:100%;
-      min-height:555px;
-      padding:38px;
-      color:var(--cream);
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      background:
-        linear-gradient(160deg, rgba(255,255,255,.08), transparent 35%),
-        radial-gradient(circle at 75% 20%, rgba(255,255,255,.12), transparent 20%),
-        linear-gradient(145deg,#28413b,#644a43);
-      box-shadow:18px 22px 40px rgba(27,26,23,.13);
-    }
-    .feature-paper::before,
-    .feature-paper::after{
-      content:"";
-      position:absolute;
-      border:1px solid rgba(255,255,255,.11);
-      border-radius:50%;
-      pointer-events:none;
-    }
-    .feature-paper::before{width:390px;height:390px;right:-160px;top:-160px}
-    .feature-paper::after{width:270px;height:270px;right:-75px;top:-100px}
-    .feature-top,.feature-bottom,.feature-title-wrap{position:relative;z-index:1}
-    .feature-top{display:flex;justify-content:space-between;gap:16px;opacity:.72;font-family:var(--sans);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase}
-    .feature-title{
-      max-width:560px;
-      font-size:clamp(3.2rem,5vw,5.4rem);
-      line-height:.93;
-      letter-spacing:-.055em;
-      font-weight:500;
-    }
-    .feature-sub{margin-top:14px;max-width:430px;opacity:.78;font-size:1rem}
-    .feature-bottom{
-      display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
-      padding-top:24px;border-top:1px solid rgba(255,255,255,.2);
-    }
-    .feature-author{font-family:var(--sans);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
-    .feature-link{
-      border-bottom:1px solid rgba(255,255,255,.55);
-      padding-bottom:4px;
-      font-family:var(--sans);
-      font-size:.72rem;
-      letter-spacing:.07em;
-      text-transform:uppercase;
-    }
-
-    /* EDITORIAL NOTE */
-    .editor-note{padding:26px 0;border-bottom:1px solid var(--line)}
-    .editor-note-grid{
-      display:grid;
-      grid-template-columns:1fr 2.2fr 1fr;
-      gap:30px;
-      align-items:center;
-    }
-    .editor-note blockquote{
-      font-size:clamp(1.35rem,2.3vw,2rem);
-      line-height:1.35;
-      letter-spacing:-.02em;
-      max-width:760px;
-    }
-    .editor-note-right{text-align:right;color:var(--soft);font-family:var(--sans);font-size:.68rem;line-height:1.7}
-
-    /* SECTION FRAME */
-    .section{padding:105px 0;border-bottom:1px solid var(--line)}
-    .section-head{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:60px;
+      grid-template-columns:1.15fr .85fr;
+      gap:56px;
       align-items:end;
-      margin-bottom:50px;
     }
-    .section-title{
-      margin-top:11px;
-      font-size:clamp(3rem,6vw,5.8rem);
-      line-height:.88;
-      letter-spacing:-.065em;
+    h1{
+      margin-top:14px;
+      max-width:760px;
+      font-size:clamp(4.1rem,9vw,7.7rem);
       font-weight:500;
+      line-height:.86;
+      letter-spacing:-.07em;
     }
-    .section-intro{max-width:510px;color:var(--soft);font-size:1rem}
-
-    /* LIBRARY PREVIEW */
-    .library-top{
+    h1 em{color:var(--rose);font-style:italic}
+    .hero-text{
+      margin-top:25px;
+      max-width:560px;
+      color:var(--muted);
+      font-size:1.04rem;
+    }
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:999px;
+      font:600 .76rem/1 var(--sans);
+      border:1px solid var(--ink);
+    }
+    .button.primary{background:var(--green);border-color:var(--green);color:#fffaf2}
+    .button.secondary{border-color:var(--line)}
+    .hero-card{
+      min-height:360px;
+      padding:28px;
+      border-radius:24px;
+      color:var(--white);
+      background:
+        radial-gradient(circle at 80% 15%,rgba(255,255,255,.16),transparent 22%),
+        linear-gradient(145deg,#284d42,#775c57);
+      box-shadow:0 20px 55px rgba(24,32,29,.14);
       display:flex;
+      flex-direction:column;
       justify-content:space-between;
-      align-items:center;
-      gap:20px;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      padding:13px 0;
-      font-family:var(--sans);
-      font-size:.68rem;
-      letter-spacing:.11em;
-      text-transform:uppercase;
     }
-    .library-list{border-bottom:1px solid var(--line)}
-    .library-item{
-      display:grid;
-      grid-template-columns:80px 1.4fr .7fr auto;
-      gap:22px;
-      align-items:center;
-      padding:29px 0;
-      border-bottom:1px solid var(--line);
-      transition:.22s ease;
+    .card-top{display:flex;justify-content:space-between;gap:14px;font:500 .66rem/1.3 var(--sans);letter-spacing:.09em;text-transform:uppercase;opacity:.72}
+    .hero-card h2{
+      max-width:400px;
+      font-size:clamp(2.7rem,5vw,4.6rem);
+      line-height:.93;
+      font-weight:500;
+      letter-spacing:-.055em;
     }
-    .library-item:last-child{border-bottom:0}
-    .library-item:hover{padding-left:10px;background:rgba(255,255,255,.16)}
-    .library-num,.library-type,.library-author{
-      font-family:var(--sans);
-      font-size:.68rem;
-      text-transform:uppercase;
-      letter-spacing:.1em;
-      color:var(--soft);
-    }
-    .library-title{font-size:clamp(1.45rem,2.5vw,2.15rem);line-height:1.05}
-    .library-desc{max-width:460px;margin-top:7px;color:var(--soft);font-size:.92rem}
-    .library-arrow{font-family:var(--sans);font-size:1rem}
-    .library-footer{
-      margin-top:28px;
-      display:flex;
-      justify-content:flex-end;
-    }
-    .under-link{
-      font-family:var(--sans);
-      font-size:.73rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      border-bottom:1px solid var(--ink);
-      padding-bottom:4px;
-    }
+    .hero-card p{max-width:390px;margin-top:12px;opacity:.78}
+    .card-bottom{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:20px;border-top:1px solid rgba(255,255,255,.22);font:500 .7rem/1.3 var(--sans)}
+    .card-bottom a{text-decoration:underline;text-underline-offset:5px}
 
-    /* ROOMS */
-    .rooms-intro{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:0;
+    .mini-note{
       border-top:1px solid var(--line);
       border-bottom:1px solid var(--line);
+      padding:22px 0;
+    }
+    .mini-note-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}
+    .mini-note p{font-size:1.35rem;line-height:1.35}
+    .mini-note span{color:var(--muted);font:500 .72rem/1.4 var(--sans);text-align:right}
+
+    section.block{padding:78px 0;border-bottom:1px solid var(--line)}
+    .heading-row{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:28px}
+    .heading-row h2{font-size:clamp(2.8rem,6vw,5rem);font-weight:500;line-height:.9;letter-spacing:-.06em}
+    .heading-row p{max-width:390px;color:var(--muted);font-size:.94rem}
+
+    .work{
+      display:grid;
+      grid-template-columns:130px 1fr auto;
+      gap:20px;
+      align-items:center;
+      padding:24px 0;
+      border-top:1px solid var(--line);
+    }
+    .work:last-child{border-bottom:1px solid var(--line)}
+    .work-num,.work-meta,.work-arrow{font:600 .68rem/1.3 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+    .work-title{font-size:clamp(1.65rem,3vw,2.4rem);line-height:1.05}
+    .work-note{margin-top:5px;color:var(--muted);font-size:.88rem}
+
+    .rooms{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
     }
     .room{
-      min-height:310px;
-      padding:30px;
+      min-height:220px;
+      padding:24px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,250,242,.35);
       display:flex;
       flex-direction:column;
       justify-content:space-between;
-      border-right:1px solid var(--line);
-      transition:.2s ease;
+      transition:transform .2s ease,background .2s ease;
     }
-    .room:nth-child(2n){border-right:0}
-    .room:nth-child(-n+2){border-bottom:1px solid var(--line)}
-    .room:hover{background:rgba(255,255,255,.18)}
-    .room-num{font-family:var(--sans);font-size:.67rem;color:var(--soft);letter-spacing:.12em}
-    .room h3{font-size:clamp(2.1rem,4vw,3.6rem);font-weight:500;letter-spacing:-.05em;line-height:.93;margin:12px 0}
-    .room p{max-width:430px;color:var(--soft);font-size:.92rem}
-    .room-tag{font-family:var(--sans);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--forest)}
-    .room-project{background:linear-gradient(135deg,rgba(39,65,59,.08),rgba(109,77,73,.07))}
+    .room:hover{transform:translateY(-4px);background:rgba(255,250,242,.7)}
+    .room h3{margin-top:12px;font-size:2.25rem;font-weight:500;letter-spacing:-.05em;line-height:.95}
+    .room p{margin-top:12px;color:var(--muted);font-size:.88rem}
+    .room-foot{font:600 .65rem/1.3 var(--sans);text-transform:uppercase;letter-spacing:.1em;color:var(--green)}
 
-    /* AUTHORS */
-    .authors{
+    .people{
       display:grid;
       grid-template-columns:1fr 1fr;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
+      gap:14px;
     }
-    .author{
-      padding:42px 34px;
-      border-right:1px solid var(--line);
+    .person{
+      padding:26px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:var(--paper-2);
     }
-    .author:last-child{border-right:0}
-    .author-index{font-family:var(--sans);font-size:.66rem;color:var(--soft);letter-spacing:.13em;text-transform:uppercase}
-    .author h3{font-size:clamp(2.5rem,5vw,4.7rem);line-height:.9;font-weight:500;letter-spacing:-.06em;margin:22px 0 10px}
-    .author-role{font-family:var(--sans);color:var(--forest);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
-    .author p{margin-top:20px;max-width:500px;color:var(--soft);font-size:.94rem}
+    .person h3{margin:12px 0 4px;font-size:3rem;font-weight:500;letter-spacing:-.055em}
+    .person .role{font:600 .67rem/1.3 var(--sans);text-transform:uppercase;letter-spacing:.1em;color:var(--green)}
+    .person p{margin-top:15px;max-width:520px;color:var(--muted);font-size:.9rem}
 
-    /* ABOUT / CLOSING */
     .closing{
-      padding:120px 0 100px;
-      position:relative;
-      overflow:hidden;
+      padding:80px 0 92px;
     }
-    .closing::before{
-      content:"AURELIS";
-      position:absolute;
-      right:-40px;
-      top:20px;
-      font-family:var(--serif);
-      font-weight:700;
-      font-size:clamp(8rem,22vw,19rem);
-      line-height:1;
-      letter-spacing:-.08em;
-      color:rgba(27,26,23,.035);
-      pointer-events:none;
-    }
-    .closing-grid{
+    .closing-box{
+      padding:38px;
+      border-radius:24px;
+      background:var(--green);
+      color:var(--white);
       display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:70px;
-      position:relative;
-      z-index:1;
+      grid-template-columns:1.05fr .95fr;
+      gap:44px;
+      align-items:end;
     }
-    .closing h2{font-size:clamp(3.8rem,7vw,7rem);line-height:.83;letter-spacing:-.07em;font-weight:500}
-    .closing-copy{max-width:510px;color:var(--soft);font-size:1rem}
-    .closing-copy p+p{margin-top:20px}
-    .signature{
-      margin-top:34px;
-      font-family:var(--sans);
-      font-size:.67rem;
-      letter-spacing:.13em;
-      text-transform:uppercase;
-      color:var(--soft);
+    .closing h2{font-size:clamp(3rem,6vw,5.7rem);font-weight:500;line-height:.88;letter-spacing:-.065em}
+    .closing p{max-width:460px;opacity:.77;font-size:.94rem}
+    .closing-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+    .closing-links a{
+      padding:10px 14px;border:1px solid rgba(255,255,255,.28);
+      border-radius:999px;font:600 .7rem/1 var(--sans)
     }
 
-    footer{padding:27px 0 50px}
-    .footer-grid{
-      border-top:1px solid var(--line);
-      padding-top:20px;
-      display:flex;
-      justify-content:space-between;
-      gap:20px;
-      flex-wrap:wrap;
-      color:var(--soft);
-      font-family:var(--sans);
-      font-size:.66rem;
-      letter-spacing:.1em;
-      text-transform:uppercase;
-    }
+    footer{padding:0 0 34px;color:var(--muted);font:500 .66rem/1.4 var(--sans)}
+    .footer-inner{border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
-    @media(max-width:900px){
-      .masthead-inner{grid-template-columns:1fr auto}
-      .brand-note{display:none}
-      .nav{gap:15px}
-      .hero-grid,.section-head,.closing-grid{grid-template-columns:1fr}
-      .hero-copy{padding:76px 0 55px;border-right:0}
-      .hero-feature{padding:0 0 55px}
-      .feature-paper{min-height:480px}
-      .editor-note-grid{grid-template-columns:1fr}
-      .editor-note-right{text-align:left}
-      .library-item{grid-template-columns:60px 1fr auto}
-      .library-type,.library-author{display:none}
+    @media(max-width:820px){
+      .hero-grid,.closing-box{grid-template-columns:1fr}
+      .rooms{grid-template-columns:1fr 1fr}
+      .heading-row{align-items:start;flex-direction:column}
+      .hero{padding-top:54px}
     }
-
-    @media(max-width:620px){
-      .container{width:min(var(--max),calc(100% - 30px))}
-      .masthead-inner{min-height:72px}
-      .nav{gap:12px;font-size:.69rem}
-      .brand{font-size:.98rem}
-      .hero{padding-top:28px}
-      .hero h1{font-size:4.05rem}
-      .hero-grid{min-height:0}
-      .feature-paper{padding:27px;min-height:430px}
-      .feature-title{font-size:3rem}
-      .section{padding:76px 0}
-      .rooms-intro,.authors{grid-template-columns:1fr}
-      .room,.author{border-right:0}
-      .room:nth-child(-n+2){border-bottom:0}
-      .room:not(:last-child),.author:not(:last-child){border-bottom:1px solid var(--line)}
-      .library-item{grid-template-columns:42px 1fr 25px;gap:14px}
-      .library-title{font-size:1.4rem}
-      .closing{padding:85px 0 70px}
-      .closing h2{font-size:4rem}
+    @media(max-width:600px){
+      .wrap{width:min(var(--max),calc(100% - 26px))}
+      .nav{min-height:68px}
+      .links{gap:10px}
+      .links a:nth-child(3),.links a:nth-child(4){display:none}
+      .nav-cta{padding:9px 12px}
+      h1{font-size:4rem}
+      .hero-card{min-height:320px}
+      .mini-note-inner{display:block}
+      .mini-note span{display:block;text-align:left;margin-top:10px}
+      section.block{padding:62px 0}
+      .work{grid-template-columns:42px 1fr 22px;gap:12px}
+      .work-meta{display:none}
+      .rooms,.people{grid-template-columns:1fr}
+      .person h3{font-size:2.5rem}
+      .closing-box{padding:26px}
     }
   </style>
 </head>
 <body>
-
-  <header class="masthead">
-    <div class="container masthead-inner">
-      <div class="brand">Aurelis</div>
-      <div class="brand-note">Independent literary house · Vol. I · 2026</div>
-      <nav class="nav" aria-label="Main navigation">
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#home">Aurelis</a>
+      <nav class="links" aria-label="Main navigation">
         <a href="#library">Library</a>
         <a href="#rooms">Rooms</a>
         <a href="#authors">Authors</a>
         <a href="#about">About</a>
+        <a class="nav-cta" href="#library">Enter Library</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="issue-line">
-          <span>Aurelis · Issue 01</span>
-          <span>Written worlds, carefully kept</span>
-        </div>
-
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <div class="eyebrow">The literary house</div>
-            <h1>Written<br>worlds,<br><em>kept alive.</em></h1>
-            <p class="hero-lead">
-              Aurelis is a home for stories, poems, essays, fragments and ideas.
-              Different voices can arrive here in different forms, without being
-              pressed into one aesthetic.
-            </p>
-            <div class="hero-note">
-              <span class="hairline"></span>
-              <span>Enter slowly. Read closely.</span>
-            </div>
-          </div>
-
-          <div class="hero-feature">
-            <article class="feature-paper">
-              <div class="feature-top">
-                <span>Currently at Aurelis · 01</span>
-                <span>Long-form fiction</span>
-              </div>
-
-              <div class="feature-title-wrap">
-                <h2 class="feature-title">The Closest Stranger</h2>
-                <p class="feature-sub">
-                  A long-form work by Anushka. The first story to take its place
-                  inside the house.
-                </p>
-              </div>
-
-              <div class="feature-bottom">
-                <span class="feature-author">Anushka</span>
-                <a class="feature-link" href="#library">Read the catalogue ↗</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="editor-note">
-      <div class="container editor-note-grid">
-        <div class="eyebrow">A small editorial house</div>
-        <blockquote>
-          “The structure is shared. The voice never has to be.”
-        </blockquote>
-        <div class="editor-note-right">
-          No feed.<br>
-          No rush.<br>
-          Just the work.
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="library">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">01 · The Library</div>
-            <h2 class="section-title">A growing<br>catalogue.</h2>
-          </div>
-          <p class="section-intro">
-            A preview of what currently lives at Aurelis. The full Library can
-            become its own room, with complete works, genres, filters and
-            dedicated reading pages.
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="label">An independent literary house</div>
+          <h1>Stories.<br>Ideas.<br><em>Worlds.</em></h1>
+          <p class="hero-text">
+            Aurelis is a place where different writers can bring different kinds of work.
+            No single style. Just good pages worth opening.
           </p>
-        </div>
-
-        <div class="library-top">
-          <span>Selected works</span>
-          <span>3 entries · Vol. I</span>
-        </div>
-
-        <div class="library-list">
-          <a class="library-item" href="#closest-stranger">
-            <span class="library-num">01</span>
-            <div>
-              <div class="library-title">The Closest Stranger</div>
-              <p class="library-desc">Anushka · long-form fiction · drama</p>
-            </div>
-            <span class="library-author">Featured</span>
-            <span class="library-arrow">↗</span>
-          </a>
-
-          <a class="library-item" href="#about">
-            <span class="library-num">02</span>
-            <div>
-              <div class="library-title">The Weight of Becoming</div>
-              <p class="library-desc">Raushan · essay · philosophy</p>
-            </div>
-            <span class="library-author">Essay</span>
-            <span class="library-arrow">↗</span>
-          </a>
-
-          <div class="library-item">
-            <span class="library-num">03</span>
-            <div>
-              <div class="library-title">More worlds will arrive here.</div>
-              <p class="library-desc">A future shelf for poetry, fantasy, romance, thrillers and experiments.</p>
-            </div>
-            <span class="library-author">Future</span>
-            <span class="library-arrow">·</span>
+          <div class="hero-actions">
+            <a class="button primary" href="#library">Enter the Library ↗</a>
+            <a class="button secondary" href="#rooms">Explore the Rooms</a>
           </div>
         </div>
 
-        <div class="library-footer">
-          <a class="under-link" href="#rooms">Walk through the rooms ↗</a>
+        <article class="hero-card">
+          <div class="card-top">
+            <span>Featured work</span>
+            <span>01</span>
+          </div>
+          <div>
+            <h2>The Closest Stranger</h2>
+            <p>Anushka's long-form story, currently the first featured work at Aurelis.</p>
+          </div>
+          <div class="card-bottom">
+            <span>Anushka</span>
+            <a href="#library">View in Library ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="mini-note">
+      <div class="wrap mini-note-inner">
+        <p>“Different voices. One house.”</p>
+        <span>Built by Raushan · Aurelis</span>
+      </div>
+    </div>
+
+    <section class="block" id="library">
+      <div class="wrap">
+        <div class="heading-row">
+          <div>
+            <div class="label">01 · Library</div>
+            <h2>What's inside</h2>
+          </div>
+          <p>The catalogue will grow as more stories and works find their place here.</p>
+        </div>
+
+        <div class="work">
+          <span class="work-num">01</span>
+          <div>
+            <div class="work-title">The Closest Stranger</div>
+            <div class="work-note">Anushka · long-form fiction</div>
+          </div>
+          <span class="work-arrow">↗</span>
+        </div>
+
+        <div class="work">
+          <span class="work-num">02</span>
+          <div>
+            <div class="work-title">More works soon</div>
+            <div class="work-note">Stories, poetry, essays, fragments and experiments.</div>
+          </div>
+          <span class="work-arrow">·</span>
         </div>
       </div>
     </section>
 
-    <section class="section" id="rooms">
-      <div class="container">
-        <div class="section-head">
+    <section class="block" id="rooms">
+      <div class="wrap">
+        <div class="heading-row">
           <div>
-            <div class="eyebrow">02 · The Rooms</div>
-            <h2 class="section-title">One house.<br>Many rooms.</h2>
+            <div class="label">02 · Rooms</div>
+            <h2>Pick a room.</h2>
           </div>
-          <p class="section-intro">
-            The rooms are where Aurelis can grow without forcing every piece of
-            writing to look the same.
-          </p>
+          <p>A simple home for very different kinds of writing.</p>
         </div>
 
-        <div class="rooms-intro">
-          <article class="room">
-            <div class="room-num">Room 01</div>
+        <div class="rooms">
+          <a class="room" href="#library">
             <div>
+              <div class="label">Room 01</div>
               <h3>Fiction</h3>
-              <p>Stories, chapters, characters and worlds that unfold over time.</p>
+              <p>Stories, chapters, characters and worlds.</p>
             </div>
-            <span class="room-tag">Long-form · Short-form</span>
-          </article>
+            <div class="room-foot">Open room ↗</div>
+          </a>
 
-          <article class="room">
-            <div class="room-num">Room 02</div>
+          <a class="room" href="#library">
             <div>
+              <div class="label">Room 02</div>
               <h3>Poetry</h3>
-              <p>Poems, fragments and pieces where language can be the whole architecture.</p>
+              <p>Poems, fragments and small things that deserve a page.</p>
             </div>
-            <span class="room-tag">Poems · Fragments</span>
-          </article>
+            <div class="room-foot">Open room ↗</div>
+          </a>
 
-          <article class="room">
-            <div class="room-num">Room 03</div>
+          <a class="room" href="#library">
             <div>
+              <div class="label">Room 03</div>
               <h3>Ideas</h3>
-              <p>Essays and reflective work about art, identity, thought, change and becoming.</p>
+              <p>Essays, philosophy, reflection and experiments.</p>
             </div>
-            <span class="room-tag">Essays · Philosophy</span>
-          </article>
-
-          <article class="room room-project">
-            <div class="room-num">Room 04</div>
-            <div>
-              <h3>Projects</h3>
-              <p>Connected literary spaces beyond the main catalogue, including The Quiet Scribe and future platforms.</p>
-            </div>
-            <span class="room-tag">The Quiet Scribe ↗ · Wattpad soon</span>
-          </article>
+            <div class="room-foot">Open room ↗</div>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="authors">
-      <div class="container">
-        <div class="section-head">
+    <section class="block" id="authors">
+      <div class="wrap">
+        <div class="heading-row">
           <div>
-            <div class="eyebrow">03 · The Writers</div>
-            <h2 class="section-title">The voices<br>behind the pages.</h2>
+            <div class="label">03 · Authors</div>
+            <h2>The people.</h2>
           </div>
-          <p class="section-intro">
-            Aurelis gathers writers under one roof without turning them into
-            one authorial voice.
-          </p>
+          <p>Writers stay distinct here. Aurelis is the house, not the voice.</p>
         </div>
 
-        <div class="authors">
-          <article class="author">
-            <div class="author-index">Author 01</div>
+        <div class="people">
+          <article class="person">
+            <div class="label">Author 01</div>
             <h3>Anushka</h3>
-            <div class="author-role">Fiction · Long-form Stories</div>
-            <p>
-              Author of <em>The Closest Stranger</em> and future long-form
-              fiction featured within Aurelis.
-            </p>
+            <div class="role">Fiction · Long-form</div>
+            <p>Author of <em>The Closest Stranger</em>.</p>
           </article>
 
-          <article class="author">
-            <div class="author-index">Author 02</div>
+          <article class="person">
+            <div class="label">Author 02</div>
             <h3>Raushan</h3>
-            <div class="author-role">Fiction · Poetry · Essays</div>
-            <p>
-              Writer and editor contributing fiction, poetry, essays and
-              experimental literary work.
-            </p>
+            <div class="role">Writer · Editor</div>
+            <p>Contributing fiction, poetry, essays and other literary work while shaping the house itself.</p>
           </article>
         </div>
       </div>
     </section>
 
     <section class="closing" id="about">
-      <div class="container closing-grid">
-        <div>
-          <div class="eyebrow">04 · The House</div>
-          <h2>A place for<br>words to stay.</h2>
-        </div>
-
-        <div class="closing-copy">
-          <p>
-            Aurelis is an independent literary house where written worlds
-            converge. It is built to hold different kinds of work without
-            flattening them into a single visual language.
-          </p>
-          <p>
-            The name is a chosen literary name for the house itself: a quiet
-            centre around which stories, writers and ideas can gather.
-          </p>
-          <div class="signature">Aurelis · Independent Literary House</div>
+      <div class="wrap">
+        <div class="closing-box">
+          <div>
+            <div class="label" style="color:#c6d7d0">04 · About</div>
+            <h2>Aurelis is the house.</h2>
+          </div>
+          <div>
+            <p>
+              A small independent literary space for written worlds to meet without
+              becoming copies of each other. The Library holds the work. The Rooms
+              give it space. The Authors give it a voice.
+            </p>
+            <div class="closing-links">
+              <a href="#library">Library ↗</a>
+              <a href="https://the-quiet-scribe.pages.dev/" target="_blank" rel="noopener">The Quiet Scribe ↗</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-
-    <div id="closest-stranger" aria-hidden="true"></div>
   </main>
 
   <footer>
-    <div class="container footer-grid">
+    <div class="wrap footer-inner">
       <span>© 2026 Aurelis</span>
-      <span>Independent Literary House</span>
-      <span>Vol. I · 2026</span>
+      <span>Independent Literary House · Built by Raushan</span>
     </div>
   </footer>
 </body>
