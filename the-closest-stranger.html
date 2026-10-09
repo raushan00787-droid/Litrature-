@@ -32,7 +32,7 @@ enter.addEventListener('click',e=>{e.preventDefault();bookObj.classList.add('ope
 next.addEventListener('click',()=>turn(1));prev.addEventListener('click',()=>turn(-1));
 let sx=0;page.addEventListener('touchstart',e=>sx=e.changedTouches[0].screenX,{passive:true});page.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-sx;if(Math.abs(dx)>45)turn(dx<0?1:-1);},{passive:true});
 page.addEventListener('click',e=>{if(e.target.closest('a,select,button'))return;turn(e.clientX>window.innerWidth/2?1:-1);});
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')turn(1);if(e.key==='ArrowLeft')turn(-1);});
+document.addEventListener('keydown',e=>{if(e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input,select,textarea,button,a,[contenteditable="true"]'))return;const r=reader.getBoundingClientRect();if(r.bottom<=0||r.top>=window.innerHeight)return;if(e.key==='ArrowRight'){e.preventDefault();turn(1);}if(e.key==='ArrowLeft'){e.preventDefault();turn(-1);}});
 const chapterStarts={"1":0,"2":6,"3":11,"4":12,"5":18,"6":21,"7":23};select.addEventListener('change',()=>{current=chapterStarts[select.value]??0;renderPage();reader.scrollIntoView({behavior:'smooth',block:'start'});});
 renderPage();
 </script></body></html>
