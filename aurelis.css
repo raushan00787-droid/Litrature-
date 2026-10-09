@@ -414,7 +414,7 @@ footer .wrap, .footer-inner { display:flex; align-items:center; justify-content:
 body:not(.aurelis-story) main:not(#home) { padding: clamp(52px, 7vw, 82px) 0 clamp(65px, 8vw, 98px); }
 main > .wrap { position: relative; }
 main .eyebrow { margin-bottom: 14px; }
-body:not(.aurelis-story) main h1 {
+body:not(.aurelis-story) main:not(#home) h1 {
   max-width: 950px;
   color: var(--aurelis-blue-deep);
   font-size: clamp(3.6rem, 8vw, 6.9rem);
@@ -422,7 +422,7 @@ body:not(.aurelis-story) main h1 {
   line-height: .86;
   letter-spacing: -.072em;
 }
-body:not(.aurelis-story) main h1 em { color: var(--aurelis-rose); font-weight: 400; }
+body:not(.aurelis-story) main:not(#home) h1 em { color: var(--aurelis-rose); font-weight: 400; }
 .intro { max-width: 670px; margin-top: 24px; color: var(--aurelis-muted); font-size: clamp(1rem,1.25vw,1.1rem); line-height: 1.85; }
 .back { display: inline-flex; align-items:center; gap:8px; margin-top: 26px; padding-bottom: 4px; border-bottom: 1px solid rgba(172,128,80,.6); color: var(--aurelis-green); font: 700 .7rem/1.4 var(--aurelis-sans); letter-spacing: .06em; transition: gap .2s ease, color .2s ease; }
 .back:hover { gap:13px; color: var(--aurelis-rose); }
@@ -589,7 +589,7 @@ body.reading-night #bookReader .page-inner .page-number { color:#c5a47e; }
   .closing-box { gap:25px; padding:27px 23px; }
   footer .wrap, .footer-inner { align-items:flex-start; flex-direction:column; gap:7px; }
   body:not(.aurelis-story) main:not(#home) { padding-top:49px; }
-  body:not(.aurelis-story) main h1 { font-size:clamp(3.55rem,14vw,5.4rem); }
+  body:not(.aurelis-story) main:not(#home) h1 { font-size:clamp(3.55rem,14vw,5.4rem); }
   .grid { grid-template-columns:minmax(0,1fr); gap:12px; margin-top:36px; }
   .card { min-height:190px; }
   .list { margin-top:38px; }
