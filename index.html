@@ -1,454 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aurelis is an independent literary house for stories, poems, essays, and written worlds." />
-  <title>Aurelis | Literary House</title>
-  <style>
-    :root{
-      --paper:#f6f1e8;
-      --paper-2:#eee6d8;
-      --ink:#18201d;
-      --muted:#6f746e;
-      --line:rgba(24,32,29,.12);
-      --green:#23453b;
-      --rose:#8a625e;
-      --white:#fffaf2;
-      --max:1120px;
-      --serif:Georgia,"Times New Roman",serif;
-      --sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-padding-top:84px}
-    body{
-      color:var(--ink);
-      background:
-        radial-gradient(circle at 10% 0%,rgba(138,98,94,.09),transparent 25%),
-        radial-gradient(circle at 100% 15%,rgba(35,69,59,.09),transparent 28%),
-        var(--paper);
-      font-family:var(--serif);
-      line-height:1.6;
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{width:min(var(--max),calc(100% - 36px));margin:auto}
-    .sans{font-family:var(--sans)}
-    .label{
-      font:700 .68rem/1.2 var(--sans);
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      color:var(--green);
-    }
-
-    header{
-      position:sticky;top:0;z-index:20;
-      background:rgba(246,241,232,.9);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--line);
-    }
-    .nav{
-      min-height:74px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:24px;
-    }
-    .logo{
-      font-size:1.35rem;
-      font-weight:700;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-    }
-    .links{display:flex;align-items:center;gap:22px;font:500 .78rem/1 var(--sans)}
-    .links a{color:var(--muted)}
-    .links a:hover{color:var(--ink)}
-    .nav-cta{
-      padding:10px 15px;
-      border:1px solid var(--ink);
-      border-radius:999px;
-      color:var(--ink)!important;
-    }
-
-    .house-map{
-      border-bottom:1px solid var(--line);
-      background:rgba(238,230,216,.42);
-    }
-    .house-map-inner{
-      min-height:36px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      overflow-x:auto;
-      white-space:nowrap;
-      color:var(--muted);
-      font:600 .61rem/1 var(--sans);
-      letter-spacing:.1em;
-      text-transform:uppercase;
-    }
-    .house-map-inner span:first-child{color:var(--green)}
-    .house-map-inner i{font-style:normal;opacity:.45}
-
-    .hero{
-      padding:76px 0 70px;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:56px;
-      align-items:end;
-    }
-    h1{
-      margin-top:14px;
-      max-width:760px;
-      font-size:clamp(4.1rem,9vw,7.7rem);
-      font-weight:500;
-      line-height:.86;
-      letter-spacing:-.07em;
-    }
-    h1 em{color:var(--rose);font-style:italic}
-    .hero-text{
-      margin-top:25px;
-      max-width:560px;
-      color:var(--muted);
-      font-size:1.04rem;
-    }
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-    .button{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:12px 18px;
-      border-radius:999px;
-      font:600 .76rem/1 var(--sans);
-      border:1px solid var(--ink);
-    }
-    .button.primary{background:var(--green);border-color:var(--green);color:#fffaf2}
-    .button.secondary{border-color:var(--line)}
-    .hero-card{
-      min-height:360px;
-      padding:28px;
-      border-radius:24px;
-      color:var(--white);
-      background:
-        radial-gradient(circle at 80% 15%,rgba(255,255,255,.16),transparent 22%),
-        linear-gradient(145deg,#284d42,#775c57);
-      box-shadow:0 20px 55px rgba(24,32,29,.14);
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-    .card-top{display:flex;justify-content:space-between;gap:14px;font:500 .66rem/1.3 var(--sans);letter-spacing:.09em;text-transform:uppercase;opacity:.72}
-    .hero-card h2{
-      max-width:400px;
-      font-size:clamp(2.7rem,5vw,4.6rem);
-      line-height:.93;
-      font-weight:500;
-      letter-spacing:-.055em;
-    }
-    .hero-card p{max-width:390px;margin-top:12px;opacity:.78}
-    .card-bottom{display:flex;justify-content:space-between;align-items:center;gap:18px;padding-top:20px;border-top:1px solid rgba(255,255,255,.22);font:500 .7rem/1.3 var(--sans)}
-    .card-bottom a{text-decoration:underline;text-underline-offset:5px}
-
-    .mini-note{
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      padding:22px 0;
-    }
-    .mini-note-inner{display:flex;align-items:center;justify-content:space-between;gap:25px}
-    .mini-note p{font-size:1.35rem;line-height:1.35}
-    .mini-note span{color:var(--muted);font:500 .72rem/1.4 var(--sans);text-align:right}
-
-    section.block{padding:78px 0;border-bottom:1px solid var(--line)}
-    .heading-row{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:28px}
-    .heading-row h2{font-size:clamp(2.8rem,6vw,5rem);font-weight:500;line-height:.9;letter-spacing:-.06em}
-    .heading-row p{max-width:390px;color:var(--muted);font-size:.94rem}
-
-    .work{
-      display:grid;
-      grid-template-columns:130px 1fr auto;
-      gap:20px;
-      align-items:center;
-      padding:24px 0;
-      border-top:1px solid var(--line);
-    }
-    .work:last-child{border-bottom:1px solid var(--line)}
-    .work-num,.work-meta,.work-arrow{font:600 .68rem/1.3 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-    .work-title{font-size:clamp(1.65rem,3vw,2.4rem);line-height:1.05}
-    .work-note{margin-top:5px;color:var(--muted);font-size:.88rem}
-
-    .rooms{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-    }
-    .room{
-      min-height:220px;
-      padding:24px;
-      border:1px solid var(--line);
-      border-radius:20px;
-      background:rgba(255,250,242,.35);
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      transition:transform .2s ease,background .2s ease;
-    }
-    .room:hover{transform:translateY(-4px);background:rgba(255,250,242,.7)}
-    .room h3{margin-top:12px;font-size:2.25rem;font-weight:500;letter-spacing:-.05em;line-height:.95}
-    .room p{margin-top:12px;color:var(--muted);font-size:.88rem}
-    .room-foot{font:600 .65rem/1.3 var(--sans);text-transform:uppercase;letter-spacing:.1em;color:var(--green)}
-
-    .people{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-    }
-    .person{
-      padding:26px;
-      border:1px solid var(--line);
-      border-radius:20px;
-      background:var(--paper-2);
-    }
-    .person h3{margin:12px 0 4px;font-size:3rem;font-weight:500;letter-spacing:-.055em}
-    .person .role{font:600 .67rem/1.3 var(--sans);text-transform:uppercase;letter-spacing:.1em;color:var(--green)}
-    .person p{margin-top:15px;max-width:520px;color:var(--muted);font-size:.9rem}
-
-    .closing{
-      padding:80px 0 92px;
-    }
-    .closing-box{
-      padding:38px;
-      border-radius:24px;
-      background:var(--green);
-      color:var(--white);
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:44px;
-      align-items:end;
-    }
-    .closing h2{font-size:clamp(3rem,6vw,5.7rem);font-weight:500;line-height:.88;letter-spacing:-.065em}
-    .closing p{max-width:460px;opacity:.77;font-size:.94rem}
-    .closing-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
-    .closing-links a{
-      padding:10px 14px;border:1px solid rgba(255,255,255,.28);
-      border-radius:999px;font:600 .7rem/1 var(--sans)
-    }
-
-    footer{padding:0 0 34px;color:var(--muted);font:500 .66rem/1.4 var(--sans)}
-    .footer-inner{border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-
-    @media(max-width:820px){
-      .hero-grid,.closing-box{grid-template-columns:1fr}
-      .rooms{grid-template-columns:1fr 1fr}
-      .heading-row{align-items:start;flex-direction:column}
-      .hero{padding-top:54px}
-    }
-    @media(max-width:600px){
-      .wrap{width:min(var(--max),calc(100% - 26px))}
-      .nav{min-height:68px}
-      .links{gap:10px}
-      .links a:nth-child(3),.links a:nth-child(4){display:none}
-      .nav-cta{padding:9px 12px}
-      .house-map-inner{min-height:32px}
-      h1{font-size:4rem}
-      .hero-card{min-height:320px}
-      .mini-note-inner{display:block}
-      .mini-note span{display:block;text-align:left;margin-top:10px}
-      section.block{padding:62px 0}
-      .work{grid-template-columns:42px 1fr 22px;gap:12px}
-      .work-meta{display:none}
-      .rooms,.people{grid-template-columns:1fr}
-      .person h3{font-size:2.5rem}
-      .closing-box{padding:26px}
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e7">
+  <meta name="description" content="Aurelis is an independent literary house for stories, poems, essays, and written worlds by distinct voices.">
+  <title>Aurelis | An Independent Literary House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script src="site.js" defer></script>
 </head>
 <body>
-  <header>
-    <div class="wrap nav">
-      <a class="logo" href="index.html">Aurelis</a>
-      <nav class="links" aria-label="Main navigation">
-        <a href="library.html">Library</a>
-        <a href="rooms.html">Rooms</a>
-        <a href="authors.html">Authors</a>
-        <a href="about.html">About</a>
-        <a class="nav-cta" href="library.html">Enter Aurelis</a><a href="https://the-quiet-scribe.pages.dev/" target="_blank" rel="noopener">The Quiet Scribe ↗</a>
-      </nav>
-    </div>
-  </header>
-
-  <div class="house-map">
-    <div class="wrap house-map-inner">
-      <span>Aurelis</span><i>→</i><span>Library</span><i>→</i><span>Rooms</span><i>→</i><span>Works</span>
-    </div>
+<header class="site-header"><div class="wrap nav">
+  <a class="brand" href="index.html" aria-label="Aurelis home"><span class="brand-mark"><span>A</span></span><span class="brand-name">Aurelis<span class="brand-sub">An independent literary house</span></span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">Menu</button>
+  <nav class="nav-links" id="primary-navigation" aria-label="Main navigation">
+    <a href="library.html">Library</a><a href="rooms.html">Rooms</a><a href="authors.html">Authors</a><a href="about.html">About</a><a href="elsewhere.html">Elsewhere</a><a class="nav-cta" href="library.html">Enter the house ↗</a>
+  </nav>
+</div></header>
+<div class="ticker"><div class="wrap ticker-inner"><span><strong>Aurelis</strong> &nbsp; / &nbsp; Stories, ideas, worlds</span><span class="ticker-right">A house for writing that keeps its own voice</span></div></div>
+<main>
+<section class="hero"><div class="wrap hero-grid">
+  <div class="hero-copy reveal"><div class="eyebrow">A place for written worlds</div><h1 class="display">Different<br>voices.<br><em>One house.</em></h1>
+    <p class="intro">Aurelis brings writers and their work under one roof without asking every story to sound alike. A home for fiction, poetry, ideas, and the pages still finding their shape.</p>
+    <div class="hero-actions"><a class="button primary" href="library.html">Explore the library <span aria-hidden="true">↗</span></a><a class="button" href="authors.html">Meet the authors</a></div>
   </div>
-
-  <main id="home">
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="label">An independent literary house</div>
-          <h1>Stories.<br>Ideas.<br><em>Worlds.</em></h1>
-          <p class="hero-text">
-            Aurelis is a place where different writers can bring different kinds of work.
-            No single style. Just good pages worth opening.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="library.html">Enter Aurelis ↗</a>
-            <a class="button secondary" href="rooms.html">Then: Rooms →</a>
-          </div>
-        </div>
-
-        <article class="hero-card">
-          <div class="card-top">
-            <span>Featured work</span>
-            <span>01</span>
-          </div>
-          <div>
-            <h2>The Closest Stranger</h2>
-            <p>Anushka's long-form story, currently the first featured work at Aurelis.</p>
-          </div>
-          <div class="card-bottom">
-            <span>Anushka</span>
-            <a href="library.html">View in Library ↗</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <div class="mini-note">
-      <div class="wrap mini-note-inner">
-        <p>“Different voices. One house.”</p>
-        <span>Built by Raushan · Aurelis</span>
-      </div>
-    </div>
-
-    <section class="block" id="library">
-      <div class="wrap">
-        <div class="heading-row">
-          <div>
-            <div class="label">01 · Library</div>
-            <h2>What's inside</h2>
-          </div>
-          <p>The catalogue will grow as more stories and works find their place here.</p>
-        </div>
-
-        <div class="work">
-          <span class="work-num">01</span>
-          <div>
-            <div class="work-title">The Closest Stranger</div>
-            <div class="work-note">Anushka · long-form fiction</div>
-          </div>
-          <span class="work-arrow">↗</span>
-        </div>
-
-        <div class="work">
-          <span class="work-num">02</span>
-          <div>
-            <div class="work-title">More works soon</div>
-            <div class="work-note">Stories, poetry, essays, fragments and experiments.</div>
-          </div>
-          <span class="work-arrow">·</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" id="rooms">
-      <div class="wrap">
-        <div class="heading-row">
-          <div>
-            <div class="label">02 · Rooms</div>
-            <h2>Pick a room.</h2>
-          </div>
-          <p>A simple home for very different kinds of writing.</p>
-        </div>
-
-        <div class="rooms">
-          <a class="room" href="library.html">
-            <div>
-              <div class="label">Room 01</div>
-              <h3>Fiction</h3>
-              <p>Stories, chapters, characters and worlds.</p>
-            </div>
-            <div class="room-foot">Open room ↗</div>
-          </a>
-
-          <a class="room" href="library.html">
-            <div>
-              <div class="label">Room 02</div>
-              <h3>Poetry</h3>
-              <p>Poems, fragments and small things that deserve a page.</p>
-            </div>
-            <div class="room-foot">Open room ↗</div>
-          </a>
-
-          <a class="room" href="library.html">
-            <div>
-              <div class="label">Room 03</div>
-              <h3>Ideas</h3>
-              <p>Essays, philosophy, reflection and experiments.</p>
-            </div>
-            <div class="room-foot">Open room ↗</div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" id="authors">
-      <div class="wrap">
-        <div class="heading-row">
-          <div>
-            <div class="label">03 · Authors</div>
-            <h2>The people.</h2>
-          </div>
-          <p>Writers stay distinct here. Aurelis is the house, not the voice.</p>
-        </div>
-
-        <div class="people">
-          <article class="person">
-            <div class="label">Author 01</div>
-            <h3>Anushka</h3>
-            <div class="role">Fiction · Long-form</div>
-            <p>Author of <em>The Closest Stranger</em>.</p>
-          </article>
-
-          <article class="person">
-            <div class="label">Author 02</div>
-            <h3>Raushan</h3>
-            <div class="role">Writer · Editor</div>
-            <p>Contributing fiction, poetry, essays and other literary work while shaping the house itself.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="closing" id="about">
-      <div class="wrap">
-        <div class="closing-box">
-          <div>
-            <div class="label" style="color:#c6d7d0">04 · About</div>
-            <h2>Aurelis is the house.</h2>
-          </div>
-          <div>
-            <p>
-              A small independent literary space for written worlds to meet without
-              becoming copies of each other. The Library holds the work. The Rooms
-              give it space. The Authors give it a voice.
-            </p>
-            <div class="closing-links">
-              <a href="library.html">Library ↗</a>
-              <a href="elsewhere.html">Elsewhere ↗</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap footer-inner">
-      <span>© 2026 Aurelis</span>
-      <span>Independent Literary House · Built by Raushan</span>
-    </div>
-  </footer>
-</body>
-</html>
+  <article class="hero-art reveal delay-2" aria-label="Aurelis literary house"><div class="art-top"><span>Independent literary house</span><span>Est. 2026</span></div><div class="seal" aria-hidden="true">A.</div><h2 class="art-title">A home for<br>the <em>unwritten.</em></h2><div><div class="art-rule"></div><div class="art-bottom"><strong>Made for the page.</strong><span>Vol. 01 · Aurelis</span></div></div></article>
+</div></section>
+<div class="manifesto"><div class="wrap manifesto-inner"><blockquote>“The house is shared. The voice is always yours.”</blockquote><p>Built by Raushan<br>For words with somewhere to belong</p></div></div>
+<section class="section"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">01 / On the shelf</div><h2>One work to begin with.</h2></div><p>Every literary house begins with a page worth keeping. Start with the first featured work in the Aurelis collection.</p></div>
+  <div class="featured-grid">
+    <div class="book-cover" aria-label="Decorative cover for The Closest Stranger"><div class="cover-kicker">Aurelis · Fiction / 01</div><div class="cover-title">The Closest <em>Stranger</em></div><div class="cover-foot"><span>Written by Anushka</span><span>01 / 01</span></div></div>
+    <div class="featured-copy"><div class="eyebrow">Featured work · Anushka</div><h3>The Closest Stranger</h3><div class="work-meta"><span class="pill">Long-form fiction</span><span class="pill">Featured</span></div><p>A story held here under its author's name, with room for readers to discover it at their own pace.</p><a class="button primary" href="the-closest-stranger.html">Open the work <span aria-hidden="true">↗</span></a></div>
+  </div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">02 / Find your room</div><h2>Follow the kind<br>of page you love.</h2></div><p>Different forms have different rhythms. Choose a room, and let the reading begin.</p></div>
+  <div class="room-grid">
+    <a class="room-card" href="fiction.html"><span class="room-number">ROOM 01 / FICTION</span><div><h3>Fiction</h3><p>Stories, characters, chapters and worlds that keep unfolding.</p></div><span class="text-link">Enter the room ↗</span></a>
+    <a class="room-card" href="poetry.html"><span class="room-number">ROOM 02 / POETRY</span><div><h3>Poetry</h3><p>Fragments, verses and small truths that ask for a little space.</p></div><span class="text-link">Enter the room ↗</span></a>
+    <a class="room-card" href="ideas.html"><span class="room-number">ROOM 03 / IDEAS</span><div><h3>Ideas</h3><p>Essays, philosophy, reflections and experiments in thought.</p></div><span class="text-link">Enter the room ↗</span></a>
+  </div>
+</div></section>
+<section class="section"><div class="wrap">
+  <div class="section-head"><div><div class="eyebrow">03 / The people</div><h2>A house, many voices.</h2></div><p>Aurelis is the place that holds the work. The writers remain their own people, with their own styles.</p></div>
+  <div class="people-grid">
+    <a class="person-card" href="author-anushka.html"><span class="person-role">Author 01 · Fiction</span><div><h3>Anushka</h3><p>Author of <em>The Closest Stranger</em>.</p></div><span class="text-link">Read author's page ↗</span></a>
+    <a class="person-card" href="author-raushan.html"><span class="person-role">Author 02 · Writer / Editor</span><div><h3>Raushan</h3><p>Contributing writing while shaping the house around it.</p></div><span class="text-link">Read author's page ↗</span></a>
+  </div>
+</div></section>
+<section class="closing"><div class="wrap"><div class="closing-panel"><div><div class="label">Aurelis / The idea</div><h2>Keep the voice.<br>Share the house.</h2></div><div><p>A literary space can connect different writers without sanding away their differences. The library keeps the work. The rooms give it space. The authors give it a voice.</p><div class="closing-actions"><a class="button light" href="about.html">About Aurelis ↗</a><a class="button light" href="elsewhere.html">Our other spaces ↗</a></div></div></div></div></section>
+</main>
+<footer class="site-footer"><div class="wrap footer-inner"><span>© <span data-year>2026</span> Aurelis · Built by Raushan</span><div class="footer-links"><a href="library.html">Library</a><a href="authors.html">Authors</a><a href="elsewhere.html">Elsewhere</a></div><span>Independent literary house</span></div></footer>
+</body></html>
