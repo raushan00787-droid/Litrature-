@@ -7,10 +7,10 @@
 header{position:sticky;top:0;z-index:10;background:rgba(246,241,232,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}.logo{font-size:1.3rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.links{display:flex;gap:18px;font:500 .76rem ui-sans-serif,system-ui,sans-serif;color:var(--muted)}.links a:hover{color:var(--ink)}
 main{padding:72px 0 90px}.eyebrow{margin-bottom:12px}h1{font-size:clamp(3.6rem,8vw,6.6rem);font-weight:500;line-height:.88;letter-spacing:-.065em}h1 em{color:var(--rose)}.intro{max-width:620px;margin-top:22px;color:var(--muted);font-size:1.05rem}.back{display:inline-block;margin-top:28px;font:600 .75rem ui-sans-serif,system-ui,sans-serif;text-decoration:underline;text-underline-offset:5px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:54px}.card{min-height:230px;padding:24px;border:1px solid var(--line);border-radius:22px;background:rgba(255,250,242,.42);display:flex;flex-direction:column;justify-content:space-between;transition:.2s}.card:hover{transform:translateY(-4px);background:rgba(255,250,242,.8)}.card h2{font-size:2.2rem;font-weight:500;line-height:.95;letter-spacing:-.05em;margin-top:12px}.card p{color:var(--muted);font-size:.9rem;margin-top:12px}.arrow{font:600 .68rem ui-sans-serif,system-ui,sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--green)}
-.list{margin-top:52px;border-top:1px solid var(--line)}.item{padding:25px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:25px;align-items:center}.item h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:500;line-height:1}.item p{color:var(--muted);margin-top:6px}.num{font:600 .68rem ui-sans-serif,system-ui,sans-serif;color:var(--muted);letter-spacing:.1em}
+.catalogue-group{margin-top:46px;scroll-margin-top:100px}.catalogue-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:1px solid var(--line)}.catalogue-heading h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:500;letter-spacing:-.05em;line-height:1.05;margin-top:10px}.catalogue-heading p{color:var(--muted);font-size:.88rem}.list{margin-top:0;border-top:0}.item{padding:25px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:25px;align-items:center}.item h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:500;line-height:1}.item p{color:var(--muted);margin-top:6px}.num{font:600 .68rem ui-sans-serif,system-ui,sans-serif;color:var(--muted);letter-spacing:.1em}
 .note{margin-top:54px;padding:28px;border-radius:22px;background:var(--green);color:var(--white)}.note h2{font-size:2.6rem;font-weight:500;line-height:.95}.note p{margin-top:12px;max-width:650px;opacity:.78}
 footer{padding:0 0 30px;color:var(--muted);font:500 .66rem ui-sans-serif,system-ui,sans-serif}footer .wrap{border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between}
-@media(max-width:700px){.links a:nth-child(3),.links a:nth-child(4){display:none}.grid{grid-template-columns:1fr}.item{align-items:flex-start}main{padding-top:52px}h1{font-size:4rem}}
+@media(max-width:700px){.links a:nth-child(3),.links a:nth-child(4){display:none}.grid{grid-template-columns:1fr}.item{align-items:flex-start}main{padding-top:52px}h1{font-size:4rem}.catalogue-heading{align-items:flex-start;flex-direction:column;gap:6px}}
 </style>
 <link rel="stylesheet" href="aurelis.css" /><script src="aurelis.js" defer></script>
 </head><body>
@@ -25,8 +25,14 @@ footer{padding:0 0 30px;color:var(--muted);font:500 .66rem ui-sans-serif,system-
 <a class="card" href="ideas.html"><div><div class="label">Room 03</div><h2>Ideas</h2><p>Essays and reflections.</p></div><div class="arrow">Browse ↗</div></a>
 <a class="card" href="archive.html"><div><div class="label">Room 04</div><h2>Archive</h2><p>Older and completed work.</p></div><div class="arrow">Browse ↗</div></a>
 </div>
-<div class="list" aria-label="Works in the Aurelis catalogue">
+<section class="catalogue-group" id="anushka-works" aria-labelledby="anushka-heading">
+<div class="catalogue-heading"><div><div class="label">Author 01</div><h2 id="anushka-heading">Works by Anushka</h2></div><p>Fiction · Long-form</p></div>
+<div class="list" aria-label="Works by Anushka">
 <a class="item" href="the-closest-stranger.html"><div><div class="num">01 · Fiction</div><h2>The Closest Stranger</h2><p>Anushka · long-form fiction</p></div><span class="arrow">Read ↗</span></a>
-<a class="item" href="poetry.html#final-act-title"><div><div class="num">02 · Poetry</div><h2>The Final Act</h2><p>Raushan Raj · English poetry</p></div><span class="arrow">Read ↗</span></a>
-<a class="item" href="ideas.html#the-miracle-of-being-chosen"><div><div class="num">03 · Ideas</div><h2>The Miracle of Being Chosen</h2><p>Raushan Raj · philosophical reflection</p></div><span class="arrow">Read ↗</span></a>
-</div></div></main><footer><div class="wrap"><span>© 2026 Aurelis</span><span>Independent Literary House</span></div></footer></body></html>
+</div></section>
+<section class="catalogue-group" id="raushan-works" aria-labelledby="raushan-heading">
+<div class="catalogue-heading"><div><div class="label">Author 02</div><h2 id="raushan-heading">Works by Raushan</h2></div><p>Poetry · Ideas</p></div>
+<div class="list" aria-label="Works by Raushan">
+<a class="item" href="poetry.html#final-act-title"><div><div class="num">01 · Poetry</div><h2>The Final Act</h2><p>Raushan Raj · English poetry</p></div><span class="arrow">Read ↗</span></a>
+<a class="item" href="ideas.html#the-miracle-of-being-chosen"><div><div class="num">02 · Ideas</div><h2>The Miracle of Being Chosen</h2><p>Raushan Raj · philosophical reflection</p></div><span class="arrow">Read ↗</span></a>
+</div></section></div></main><footer><div class="wrap"><span>© 2026 Aurelis</span><span>Independent Literary House</span></div></footer></body></html>
