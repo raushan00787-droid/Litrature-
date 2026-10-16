@@ -19,7 +19,7 @@
   --aurelis-shadow: 0 22px 55px rgba(29, 43, 58, .09);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; }
+html { scroll-behavior: smooth; scroll-padding-top: 7.5rem; }
 body {
   color: var(--aurelis-ink);
   background:
