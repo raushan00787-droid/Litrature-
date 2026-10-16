@@ -40,7 +40,8 @@
 
     var file = location.pathname.split("/").pop() || "index.html";
     var currentSection = file;
-    if (["fiction.html", "poetry.html", "ideas.html", "archive.html", "the-closest-stranger.html"].indexOf(file) !== -1) currentSection = "library.html";
+    if (["fiction.html", "poetry.html", "ideas.html", "archive.html"].indexOf(file) !== -1) currentSection = "rooms.html";
+    if (file === "the-closest-stranger.html") currentSection = "library.html";
     if (["author-raushan.html", "author-anushka.html"].indexOf(file) !== -1) currentSection = "authors.html";
     Array.prototype.slice.call(links.querySelectorAll("a[href]")).forEach(function (a) {
       try {
@@ -88,6 +89,57 @@
     });
   }
 
+
+  /* Keep the location trail accurate on every page, not just the homepage. */
+  var pageFile = location.pathname.split("/").pop() || "index.html";
+  var breadcrumbMap = {
+    "index.html": [{label:"Aurelis", current:true}],
+    "library.html": [{label:"Aurelis", href:"index.html"},{label:"Library", current:true}],
+    "rooms.html": [{label:"Aurelis", href:"index.html"},{label:"Rooms", current:true}],
+    "fiction.html": [{label:"Aurelis", href:"index.html"},{label:"Rooms", href:"rooms.html"},{label:"Fiction", current:true}],
+    "poetry.html": [{label:"Aurelis", href:"index.html"},{label:"Rooms", href:"rooms.html"},{label:"Poetry", current:true}],
+    "ideas.html": [{label:"Aurelis", href:"index.html"},{label:"Rooms", href:"rooms.html"},{label:"Ideas", current:true}],
+    "archive.html": [{label:"Aurelis", href:"index.html"},{label:"Rooms", href:"rooms.html"},{label:"Archive", current:true}],
+    "authors.html": [{label:"Aurelis", href:"index.html"},{label:"Authors", current:true}],
+    "author-anushka.html": [{label:"Aurelis", href:"index.html"},{label:"Authors", href:"authors.html"},{label:"Anushka", current:true}],
+    "author-raushan.html": [{label:"Aurelis", href:"index.html"},{label:"Authors", href:"authors.html"},{label:"Raushan", current:true}],
+    "about.html": [{label:"Aurelis", href:"index.html"},{label:"About", current:true}],
+    "elsewhere.html": [{label:"Aurelis", href:"index.html"},{label:"Elsewhere", current:true}],
+    "the-closest-stranger.html": [{label:"Aurelis", href:"index.html"},{label:"Library", href:"library.html"},{label:"Fiction", href:"fiction.html"},{label:"The Closest Stranger", current:true}]
+  };
+  var breadcrumbHost = document.querySelector(".house-map-inner, .map .wrap, .crumb .wrap");
+  if (!breadcrumbHost && header) {
+    var trail = document.createElement("nav");
+    trail.className = "house-map aurelis-breadcrumb";
+    trail.setAttribute("aria-label", "Breadcrumb");
+    breadcrumbHost = document.createElement("div");
+    breadcrumbHost.className = "wrap house-map-inner";
+    trail.appendChild(breadcrumbHost);
+    header.insertAdjacentElement("afterend", trail);
+  }
+  if (breadcrumbHost) {
+    breadcrumbHost.classList.add("house-map-inner");
+    var trailContainer = breadcrumbHost.closest(".house-map, .map, .crumb") || breadcrumbHost;
+    trailContainer.setAttribute("role", "navigation");
+    trailContainer.setAttribute("aria-label", "Breadcrumb");
+    var crumbs = breadcrumbMap[pageFile] || [{label:"Aurelis",href:"index.html"},{label:"Library",href:"library.html"},{label:"Works",current:true}];
+    breadcrumbHost.replaceChildren();
+    crumbs.forEach(function (crumb, index) {
+      if (index > 0) {
+        var separator = document.createElement("i");
+        separator.className = "aurelis-crumb-separator";
+        separator.setAttribute("aria-hidden", "true");
+        separator.textContent = "→";
+        breadcrumbHost.appendChild(separator);
+      }
+      var item = document.createElement(crumb.href && !crumb.current ? "a" : "span");
+      item.textContent = crumb.label;
+      if (crumb.href && !crumb.current) item.href = crumb.href;
+      if (crumb.current) item.setAttribute("aria-current", "page");
+      breadcrumbHost.appendChild(item);
+    });
+  }
+
   var libraryGrid = document.querySelector("main .grid");
   var libraryBack = document.querySelector("main .back");
   if (libraryGrid && libraryBack && /(^|\/)library\.html$/.test(location.pathname)) {
@@ -99,12 +151,15 @@
     var searchInput = searchWrap.querySelector("input");
     var count = searchWrap.querySelector(".search-count");
     var candidates = Array.prototype.slice.call(document.querySelectorAll("main .grid .card, main .list .item"));
+    var catalogueGroups = Array.prototype.slice.call(document.querySelectorAll("main .catalogue-group"));
     var empty = document.createElement("p");
     empty.className = "search-empty";
     empty.hidden = true;
     empty.textContent = "No matching shelves yet. Try a title, room, or author.";
-    var list = document.querySelector("main .list");
-    if (list) list.insertAdjacentElement("afterend", empty);
+    var lastGroup = document.querySelector("main .catalogue-group:last-of-type");
+    var firstList = document.querySelector("main .list");
+    var emptyAnchor = lastGroup || firstList;
+    if (emptyAnchor) emptyAnchor.insertAdjacentElement("afterend", empty);
 
     function filterCatalogue() {
       var query = searchInput.value.trim().toLocaleLowerCase();
@@ -113,6 +168,10 @@
         var matches = !query || item.textContent.toLocaleLowerCase().indexOf(query) !== -1;
         item.hidden = !matches;
         if (matches) visible += 1;
+      });
+      catalogueGroups.forEach(function (group) {
+        var visibleItems = group.querySelectorAll(".list .item:not([hidden])").length;
+        group.hidden = query.length > 0 && visibleItems === 0;
       });
       count.textContent = visible + (visible === 1 ? " result" : " results");
       empty.hidden = visible !== 0;
