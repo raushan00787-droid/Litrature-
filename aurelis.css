@@ -678,3 +678,93 @@ body.reading-night #bookReader .page-inner .page-number { color:#c5a47e; }
     width: 100%;
   }
 }
+
+
+/* Visual finish: custom miniature covers, atmospheric featured art, and illustrated rooms. */
+.hero-card { isolation: isolate; }
+.hero-art {
+  position: absolute;
+  top: 1.4rem;
+  right: .4rem;
+  z-index: 0;
+  width: min(58%, 248px);
+  opacity: .62;
+  pointer-events: none;
+  transform: rotate(3deg);
+  animation: aurelis-art-drift 8s ease-in-out infinite;
+}
+.hero-art svg { display:block; width:100%; height:auto; overflow:visible; }
+.hero-card > :not(.hero-art) { position:relative; z-index:1; }
+.hero-card h2 { text-shadow: 0 3px 24px rgba(12,25,38,.25); }
+@keyframes aurelis-art-drift {
+  0%,100% { transform:translateY(0) rotate(3deg); }
+  50% { transform:translateY(-5px) rotate(1deg); }
+}
+.work-cover {
+  display:block;
+  width:68px;
+  aspect-ratio:72 / 94;
+  flex:0 0 auto;
+  overflow:hidden;
+  background:var(--aurelis-blue);
+  box-shadow:4px 6px 12px rgba(29,43,58,.16), inset 3px 0 rgba(255,250,242,.13);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.work-cover svg { display:block; width:100%; height:100%; }
+a.work:hover .work-cover, a.item:hover .work-cover {
+  transform:translateY(-3px) rotate(-1.5deg);
+  box-shadow:6px 9px 15px rgba(29,43,58,.2);
+}
+.cover-fiction { background:#20384f; }
+.cover-poetry { background:#365a4e; }
+.cover-ideas { background:#775653; }
+.work { grid-template-columns:68px 2.1rem minmax(0,1fr) auto; }
+.work .work-cover { grid-column:1; grid-row:1; }
+.work .work-num { grid-column:2; }
+.work > div { min-width:0; }
+.work-title { max-width:620px; }
+.catalogue-group .item {
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr) auto;
+  align-items:center;
+  gap:20px;
+}
+.catalogue-group .item .work-cover { width:58px; }
+.catalogue-group .item > div { min-width:0; }
+.catalogue-group .item h2 { max-width:620px; }
+.room::after, .card[href*="fiction.html"]::after, .card[href*="poetry.html"]::after,
+.card[href*="ideas.html"]::after, .card[href*="archive.html"]::after {
+  position:absolute;
+  top:18px;
+  right:22px;
+  z-index:0;
+  color:var(--aurelis-gold);
+  font:400 4.6rem/.9 var(--aurelis-serif);
+  opacity:.19;
+  pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+}
+.room::after { top:24px; right:27px; font-size:5.4rem; }
+.room[href*="fiction.html"]::after, .card[href*="fiction.html"]::after { content:"✦"; }
+.room[href*="poetry.html"]::after, .card[href*="poetry.html"]::after { content:"∿"; font-size:5.8rem; }
+.room[href*="ideas.html"]::after, .card[href*="ideas.html"]::after { content:"✧"; }
+.room[href*="archive.html"]::after, .card[href*="archive.html"]::after { content:"❧"; }
+.room:hover::after, .card[href*="fiction.html"]:hover::after,
+.card[href*="poetry.html"]:hover::after, .card[href*="ideas.html"]:hover::after,
+.card[href*="archive.html"]:hover::after { opacity:.34; transform:translateY(-3px) rotate(-5deg); }
+.room > div, .card > div { position:relative; z-index:1; }
+.room .label, .card .label { position:relative; z-index:1; }
+@media (max-width: 680px) {
+  .hero-art { width:min(52%, 200px); top:.65rem; right:-.35rem; opacity:.52; }
+  .hero-card h2 { max-width:245px; }
+  .work { grid-template-columns:48px 1.55rem minmax(0,1fr) auto; gap:10px; }
+  .work-cover { width:48px; }
+  .work-title { font-size:1.28rem; }
+  .catalogue-group .item { grid-template-columns:48px minmax(0,1fr) auto; gap:12px; }
+  .catalogue-group .item .work-cover { width:48px; }
+  .catalogue-group .item h2 { font-size:1.42rem; line-height:1.05; }
+  .room::after { top:20px; right:20px; font-size:4.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-art { animation:none; }
+}
