@@ -666,3 +666,15 @@ body.reading-night #bookReader .page-inner .page-number { color:#c5a47e; }
   .catalogue-heading { align-items: flex-start; flex-direction: column; gap: 7px; }
   .catalogue-group { margin-top: 34px; }
 }
+
+
+/* The collapsed mobile menu may hide; once open, all destinations must remain visible. */
+@media (max-width: 860px) {
+  header .links.is-open a:nth-child(3),
+  header .links.is-open a:nth-child(4) {
+    display: flex !important;
+  }
+  header .links.is-open a {
+    width: 100%;
+  }
+}
